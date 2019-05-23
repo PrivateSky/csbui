@@ -29,7 +29,7 @@ export const commonStyle = {
     },
 
     welcomeMessage: {
-        color: '#7ea9cb',
+        color: '#658482',
         fontSize: 28,
         marginBottom: 20,
         fontWeight: "bold",
@@ -37,7 +37,7 @@ export const commonStyle = {
     },
 
     guidelines: {
-        color: '#7ea9cb',
+        color: '#7E7E7D',
         fontStyle: "italic",
         marginBottom: 20,
         textAlign: 'center'
@@ -67,7 +67,7 @@ export const commonStyle = {
     itemTextContainer: {
         justifyContent: 'center',
         textAlign: "center",
-        color: '#7ea9cb',
+        color: '#7E7E7D',
         fontSize: 18
     }
 }

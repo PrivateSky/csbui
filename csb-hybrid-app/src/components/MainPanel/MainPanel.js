@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 import Panel from '../Panel/Panel';
 import CSBChildrenContainer from '../CSBDetailedItem/CSBChildrenContainer';
@@ -33,11 +33,12 @@ class MainPanel extends React.Component {
             <View style={style.mainPanel}>
                 <Panel
                     breakpoint={this.props.breakpoint}
-                    name={"Dashboard"}>
+                    name={"Dashboard"} footer={"Version: 0.1"}>
                     <CSBChildrenContainer
                         csbsPerPage = {visualPreferences.COLUMN_NUMBER_FOR_DASHBOARD_LISTED_CSBS}
                         safeBoxes={this.props.safeBoxes}
                         isLoaded={this.state.isLoaded} />
+
                 </Panel>
             </View>
         )

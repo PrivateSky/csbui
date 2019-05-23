@@ -70,11 +70,10 @@ const styleSheet = StyleSheet.create({
 
     button: {
         padding: 10,
-        width: 100,
+        "min-width": 100,
         borderWidth: 1,
         borderColor: '#cccccc',
-        borderRadius: 10,
-
+        borderRadius: 10
     },
 
     text: {

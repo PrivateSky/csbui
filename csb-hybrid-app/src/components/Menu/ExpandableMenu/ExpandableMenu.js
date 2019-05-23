@@ -84,7 +84,7 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         paddingLeft: 10,
         height: 40,
-        backgroundColor: "#89bedc"
+        backgroundColor: "#6b88a2"
     },
 
     Label: {

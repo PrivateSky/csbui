@@ -24,38 +24,28 @@ export const commons = {
         height: '100%',
         width: '100%',
         justifyContent: 'space-between',
-        borderStyle: "solid",
-        borderRightWidth: 1,
-        borderColor: "#e0e0e0",
-        backgroundColor: "#e0e0e090"
+        backgroundColor: "#658482"
     },
 
     sidebarOverlay: {
         height: '100%',
-        flexDirection: 'row',
-        backgroundColor: '#FFFFFF'
+        flexDirection: 'row'
     },
 
     sidebarWrapper: {
         flex: 1,
         height: '100%',
         width: '100%',
-        borderStyle: "solid",
-        borderRightWidth: 1,
-        borderColor: "#e0e0e0",
-        backgroundColor: '#FFFFFF'
+        backgroundColor: '#658482'
     },
 
     sideBarMenuContainer: {
         flex: 1,
-        marginTop: 20,
+        marginTop: 20
     },
 
     sideBarVersion: {
         height: 30,
-        borderTopWidth: 1,
-        borderStyle: 'solid',
-        borderTopColor: "#E0E0E0",
         color: "#999",
         fontSize: 12,
         padding: 5,
@@ -91,9 +81,6 @@ export const commons = {
         width: '100%',
         padding: 17,
         height: 55,
-        borderStyle: "solid",
-        borderBottomColor: "#e0e0e0",
-        borderBottomWidth: 1,
         backgroundColor: "#FFF"
     },
 
@@ -122,15 +109,12 @@ export const commons = {
     title: {
         height: 55,
         fontWeight: 'bold',
-        padding: 17,
-        borderStyle: "solid",
-        borderBottomColor: "#e0e0e0",
-        borderBottomWidth: 1
+        padding: 17
     },
 
     panelContent: {
         width: '100%',
-        height: '100%'
+        height: '85%'
     }
     // End content style
 };

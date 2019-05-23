@@ -76,7 +76,7 @@ export const commonStyle = {
 
     continueButton: {
         height: 45,
-        backgroundColor: 'rgb(33, 150, 243)',
+        backgroundColor: "#658482",
         borderRadius: 3,
         bottom: -20
     },

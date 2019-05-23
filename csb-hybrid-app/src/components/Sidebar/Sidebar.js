@@ -70,21 +70,21 @@ class Sidebar extends React.Component {
 
         const classes = StyleSheetFactory.getStyleSheet(this.props.breakpoint);
 
-        const dashboardIcon = (<Icon name="home" size={24} color="#c5d1d8" />);
+        const dashboardIcon = (<Icon name="home" size={24} color="#658482" />);
 
         const menuItems = [{
             name: "Create a new CSB",
-            icon: (<Icon name="plus-square" size={20} color="#6fabca" />),
+            icon: (<Icon name="plus-square" size={20} color="#AAA" />),
             to: { web: "/new-csb" }
         },
         {
             name: "Settings",
-            icon: (<Icon name="gear" size={20} color="#6fabca" />),
+            icon: (<Icon name="gear" size={20} color="#AAA" />),
             to: { web: "/settings" }
         },
         {
             name: "Backup",
-            icon: (<Icon name="cloud" size={20} color="#6fabca" />),
+            icon: (<Icon name="cloud" size={20} color="#AAA" />),
             to: { web: "/backup" }
         }
         ];
@@ -96,9 +96,6 @@ class Sidebar extends React.Component {
             ? (
                 <View style={classes.sidebarOverlay}>
                     <View style={classes.sidebarWrapper}>
-                        <Dashboard mobileMenuHandler={this.props.mobileMenuHandler}>
-                            {dashboardIcon}
-                        </Dashboard>
 
                         <ScrollView>
                             <ProfileSummary
@@ -117,8 +114,6 @@ class Sidebar extends React.Component {
                                 renderRow={(data) => <MenuItem data={data} mobileMenuHandler={this.props.mobileMenuHandler} />}
                             />
                         </ScrollView>
-
-                        <Text style={classes.sideBarVersion}>Version: 0.1</Text>
                     </View>
                 </View>
             )
