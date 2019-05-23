@@ -13,7 +13,7 @@ RUN mkdir workspace
 
 RUN git clone https://github.com/PrivateSky/privatesky.git workspace/privatesky
 
-RUN git clone https://github.com/PrivateSky/csbui.git workspace/csbui
+RUN git clone -b 3dt https://github.com/PrivateSky/csbui.git workspace/csbui
 RUN cd workspace/csbui/csb-hybrid-app && \
     npm install && \
     mkdir public/apps/csb/scripts
