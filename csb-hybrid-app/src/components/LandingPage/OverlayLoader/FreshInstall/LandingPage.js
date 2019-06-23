@@ -49,6 +49,20 @@ class LandingPage extends React.Component {
                         }}>
                     </FirstAction>
                     <FirstAction
+                        navigation={this.props.navigation}
+                        breakpoint={this.props.breakpoint}
+                        data={{
+                            icon: require('../../../../assets/global/images/new_csb.png'),
+                            hover: require('../../../../assets/global/images/new_csb_hover.png'),
+                            title: "Init CSB",
+                            width: width,
+                            to: {
+                                native: "Wizard",
+                                web: "/wizard/new-csb"
+                            }
+                        }}>
+                    </FirstAction>
+                    <FirstAction
                         breakpoint={this.props.breakpoint}
                         data={{
                             icon: require('../../../../assets/global/images/csb_info.png'),

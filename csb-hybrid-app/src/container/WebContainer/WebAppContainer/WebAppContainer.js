@@ -13,6 +13,7 @@ import {dashboardPages} from "../../../store/actions";
 import StyleSheetFactory from '../../../style/DashBoardStyle/StyleFactory';
 import Settings from "../../../components/Pages/Settings/Settings";
 import Backup from "../../../components/Pages/Backup/Backup";
+import CSBApp from "../../CSBApp/CSBApp";
 
 class WebAppContainer extends Component {
 
@@ -46,6 +47,14 @@ class WebAppContainer extends Component {
                                     {...props}
                                     breakpoint={this.props.breakpoint}
                                 />}/>
+
+                            <Route
+                                path="/apps"
+                                render={(props) => <CSBApp
+                                    {...props}
+                                    breakpoint={this.props.breakpoint}
+                                />}/>
+
 
                             <Route
                                 path="/new-csb"

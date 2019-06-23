@@ -10,7 +10,7 @@ const profileSummary = props => {
                 <View style={classes.ImageContainer}>
 
                     {<Image style={classes.Image}
-                                source={require("../../../assets/global/images/masks/anonymous.png")} />}
+                                source={require("../../../assets/global/images/masks/freaky-monkey.png")} />}
                 </View>
                 <View>
                     <Text style={classes.Name}>{props.name}</Text>

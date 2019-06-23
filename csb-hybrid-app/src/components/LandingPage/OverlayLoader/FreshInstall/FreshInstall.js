@@ -44,7 +44,7 @@ export default class FreshInstall extends Component {
                                 render={(props) => <View style={styleSheet.container}>
                                     <QuickStart {...props}/>
                                 </View>}/>
-                            <Redirect from="/" to="/restore"/>
+                            <Redirect from="/" to="/wizard"/>
                         </Switch>
                     </ImageBackground>
                 </View>

@@ -93,7 +93,6 @@ class AppContainer extends Component {
             };
             require("../../public/apps/csb/scripts/reactClient");
             window.$$.PSK_PubSub = window.reactClientRequire("soundpubsub").soundPubSub;
-            console.log(window.$$);
 
             verifyIfFreshInstall(async (isFreshInstall) => {
                 self.props.setFreshInstall(isFreshInstall || await isPartOfCsbCreation('wizardPreferences'));
@@ -128,11 +127,11 @@ class AppContainer extends Component {
 
         return (
             <View style={styles.wrapper}>
-                <View style={{height: 0}}>
+                {/*<View style={{height: 0}}>
                     <WebView ref={(webView) => {
                         this.webView = webView;
                     }} source={{uri: require('../../public/apps/csb/csbTest.html')}}/>
-                </View>
+                </View>*/}
                 {someView}
                 <AppLoader isLoaded={this.props.isLoaded}/>
                 <PinHolder pinErrMessage={this.state.pinErrMessage} submitPin={this.submitPin}/>

@@ -81,40 +81,40 @@ export const csbActions = [
     {
         actionName: 'New CSB',
         actionPathName: '/new-csb',
-        actionColor: '#ffffff',
-        actionTextColor: '#000000',
+        actionColor: '#1baf46',
+        actionTextColor: '#FFFFFF',
         modalComponent: NewCSBModal
     },
     {
         actionName: 'Attach CSB',
         actionPathName: '/attach-csb',
-        actionColor: '#1baf46',
+        actionColor: '#2c7daf',
         actionTextColor: '#ffffff',
         modalComponent: AttachCSBModal
     },
     {
         actionName: 'Attach File',
         actionPathName: '/attach-file',
-        actionColor: '#2c7daf',
+        actionColor: '#17a2b8',
         actionTextColor: '#ffffff',
         modalComponent: AttachFileModal
     },
     {
         actionName: 'Share',
         actionPathName: '/share',
-        actionColor: '#ffffff',
+        actionColor: '#DEDEDE',
         actionTextColor: '#000000'
     },
     {
         actionName: 'Receive',
         actionPathName: '/receive',
-        actionColor: '#ffffff',
+        actionColor: '#DEDEDE',
         actionTextColor: '#000000'
     },
     {
         actionName: 'Assets',
         actionPathName: '/assets',
-        actionColor: '#ffffff',
+        actionColor: '#DEDEDE',
         actionTextColor: '#000000'
     },
     {

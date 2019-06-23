@@ -53,7 +53,7 @@ export default class DetailTab extends React.Component {
         return (
             <View style={[
                 styleSheet.tab,
-                this.state.hover ? { backgroundColor: '#6b88a2' } : null
+                this.state.hover ? { backgroundColor: '#000000' } : null
             ]}
                 onMouseEnter={() => this.handleMouseEnter()}
                 onMouseLeave={() => this.handleMouseLeave()}>

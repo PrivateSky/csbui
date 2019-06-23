@@ -226,7 +226,7 @@ module.exports = {
                 }
             },
             {
-                test: [/csbTest.html$/,/fileUploader.html$/,/fileDownloader.html$/],
+                test: [/fileUploader.html$/,/fileDownloader.html$/,/appProxy.html$/],
                 use: {
                     loader: 'file-loader',
                     options: {

@@ -20,7 +20,7 @@ class MenuItem extends Component {
         const childrenView = (
             <View style={style.NavLinkContainer}>
                 {this.props.data.icon}
-                <Text style={this.state.hover ? style.MenuItemTitleHover : style.MenuItemTitle}>{this.props.data.name}</Text>
+                <Text style={style.MenuItemTitle}>{this.props.data.name}</Text>
             </View>
         )
         return (
@@ -46,14 +46,6 @@ const style = StyleSheet.create({
         paddingBottom: 3,
         fontSize: 13,
         fontWeight: '500',
-        color: "#FFF"
-    },
-
-    MenuItemTitleHover: {
-        paddingLeft: 10,
-        paddingBottom: 3,
-        fontSize: 13,
-        fontWeight: '500',
         color: "#222"
     },
 
@@ -65,7 +57,10 @@ const style = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         paddingLeft: 10,
-        height: 40
+        height: 40,
+        borderStyle: "solid",
+        borderBottomWidth: 1,
+        borderBottomColor: "#E0E0E0"
     }
 });
 

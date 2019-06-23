@@ -21,7 +21,7 @@ export default class StyleSheetFactory {
             },
         
             stepCompleted: {
-                backgroundColor: "#658482"
+                backgroundColor: "#6b8ec6"
             },
         
             isCurrent: {

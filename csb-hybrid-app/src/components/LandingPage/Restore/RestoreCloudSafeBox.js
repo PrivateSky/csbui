@@ -147,10 +147,7 @@ class RestoreCloudSafeBox extends React.PureComponent {
         switch (this.state.currentState) {
             case "seed":
                 seedInputView = <SimpleWrapper>
-                    <Text style={styleSheet.stepName}>Enter your recovery phrase or seed that you received with your medical documents.</Text>
-                    <Text style={{fontWeight: "bold"}}>
-                        This allows you to get all your info as patient.
-                    </Text>
+                    <Text style={styleSheet.stepName}>Enter your recovery phrase or seed</Text>
                     <Text style={styleSheet.tip}>
                         <Text style={{fontWeight: "bold"}}>Tip: </Text>
                         You may have kept it in a secret place, possibly on a piece of paper.

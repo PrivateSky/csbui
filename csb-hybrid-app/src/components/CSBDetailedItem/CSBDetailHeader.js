@@ -35,7 +35,7 @@ const styleSheet = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-start',
         flexDirection: 'column',
-        backgroundColor: '#658482'
+        backgroundColor: '#3d3d3d'
     },
 
     headerSecondaryContainer: {
@@ -43,6 +43,6 @@ const styleSheet = StyleSheet.create({
         height: 55,
         justifyContent: 'flex-start',
         flexDirection: 'row',
-        backgroundColor: '#658482'
+        backgroundColor: '#3d3d3d'
     }
 });

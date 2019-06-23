@@ -1,7 +1,9 @@
 import PinManager from './PinManager';
+const axios = require("axios");
 
 let interactions = {};
 let readPin = function (noTries) {
+    //this.swarm("validatePin", "123456", noTries); return;
     if (noTries === 3) {
         PinManager.showModalPin(null, (pin) => {
             this.swarm("validatePin", pin, noTries);
@@ -17,7 +19,6 @@ let readPin = function (noTries) {
             PinManager.blockAccess("You entered a wrong pin for 3 times. Please try again in 1 minute.")
         }
     }
-
 };
 
 class InteractionService {
@@ -75,96 +76,57 @@ class InteractionService {
     }
 
     createCSB(csbName, backupUrl, callback) {
+
         if (typeof backupUrl === "function") {
             callback = backupUrl;
             backupUrl = null;
         }
 
-        let self = this;
-        let createCSBFn = function () {
-            self.interact.startSwarm("pskwallet.createCsb", "start", csbName).on({
-                onComplete: function (completedInfo) {
-                    if (completedInfo) {
-                        console.log(completedInfo);
-                    }
-                },
-                handleError: function (error) {
-                    callback(error);
-                },
-                onError: function (error) {
-                    console.log(error)
-                },
-                readPin: readPin,
+        axios.post('/csb', {
+            csbName: csbName,
+            backupUrl: backupUrl
+        })
+            .then(function (response) {
+                console.log(response);
+                    callback(response.data.err, response.data.isMaster, response.data.seed);
+            })
+            .catch(function (error) {
+                console.log(error);
+                callback(error);
 
-                createPin: function (defaultPin) {
-                    this.swarm("loadBackups", defaultPin);
-                },
-
-                printSensitiveInfo: function (seed, defaultPin) {
-                    let seedBuffer = Buffer.from(seed);
-                    callback(null, true, seedBuffer.toString());
-                    PinManager.setDefaultPin(defaultPin);
-                    console.log("Seed: ", seedBuffer.toString());
-                    console.log("Pin: ", defaultPin)
-                },
-                printInfo: function (info) {
-                    callback(null, info);
-                }
             });
-        };
-
-        if (backupUrl) {
-            this.interact.startSwarm("pskwallet.addBackup", "start", backupUrl).on({
-                readPin: readPin,
-                createPin: function (defaultPin) {
-                    this.swarm('addBackup', defaultPin);
-                },
-                handleError: function (err) {
-                    console.log(err);
-                },
-                printInfo: function (info) {
-                    console.log(info);
-                    createCSBFn();
-                }
-            });
-        }
-        else {
-            createCSBFn()
-        }
     }
 
     changeDefaultPin(pin, callback) {
-        this.interact.startSwarm("pskwallet.setPin", "start").on({
-            readPin: readPin,
-            enterNewPin: function () {
-                this.swarm("actualizePin", pin);
-            },
-            handleError: (err) => {
-                console.log(err);
-            },
-            printInfo: function (info) {
-                callback(null, info);
-            }
-        })
+
+            axios.post('/changePin', {
+                pin: pin,
+            })
+            .then(function (response) {
+                console.log(response);
+                callback(response.data.err);
+            })
+            .catch(function (error) {
+                console.log(error);
+                callback(error);
+            });
+
     }
 
     resetPin(seed, newPin, callback) {
-        this.interact.startSwarm("pskwallet.resetPin", "start").on({
-            readSeed: function (noTries) {
-                this.swarm("validateSeed", seed, noTries);
-            },
 
-            insertPin: function (noTries) {
-                this.swarm("actualizePin", newPin);
-            },
-            handleError: (err) => {
-                callback(err);
-            },
-            printInfo: function (info) {
-                callback();
-                console.log(info);
-            }
+        axios.post('/resetPin', {
+            seed: seed,
+            newPin:newPin
         })
+            .then(function (response) {
+                console.log(response);
+                callback(response.data.err);
+            })
+            .catch(function (error) {
+                console.log(error);
+                callback(error);
+            });
     }
 
     doBackup(callback) {
@@ -193,28 +155,21 @@ class InteractionService {
     }
 
 
-    getCsbNames(csbsPath, callback) {
-        if (this.interact) {
-            this.interact.startSwarm("pskwallet.listCSBs", "start", csbsPath).on({
-                __return__: function (csbs) {
-                    console.log(csbs);
-                    callback(null, csbs);
-                },
-                onError: function (error) {
-                    console.log(error)
-                },
-                readPin: readPin,
-                handleError: function (err, message) {
-                    console.error(err, message);
-                },
-                noMasterCSBExists: function () {
-                    callback(null, []);
-                }
+    getCsbNames(csbPath, callback) {
+
+        axios.get('/list/csb', {
+            params:{
+                csbPath: csbPath?csbPath:""
+            }
+        })
+            .then(function (response) {
+                console.log(response);
+                callback(null, response.data.csbList);
+            })
+            .catch(function (error) {
+                console.log(error);
+                callback(error);
             });
-        }
-        else {
-            this.registerCallback("getCsbNames", arguments);
-        }
     }
 
     restoreCSB(path, seed, callback) {
@@ -239,24 +194,19 @@ class InteractionService {
 
     saveCsbManifest(csbName, manifest, callback) {
 
-        this.interact.startSwarm("storeManifestFile", "start", csbName, manifest).on({
-            onComplete: (manifestPath) => {
-                if (manifestPath) {
-                    console.log(manifestPath);
-                    this.interact.startSwarm("pskwallet.attachFile", "start", csbName + "/manifest", manifestPath).on({
-                        readPin: readPin,
-                        handleError: function (err) {
-                            console.log(err);
-                        },
-                        printInfo: function (info) {
-                            console.log(info);
-                            callback();
-                        }
-                    });
+        axios.post('/manifest', {
+            csbName: csbName,
+            manifest: manifest
+        })
+            .then(function (response) {
+                console.log(response);
+                callback(null, response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+                callback(error);
+            });
 
-                }
-            }
-        });
     }
 
     addFilesToCSB(csbPath, csbAlias, progressCallback, callback) {

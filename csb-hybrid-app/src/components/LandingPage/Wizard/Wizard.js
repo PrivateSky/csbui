@@ -201,9 +201,7 @@ class Wizard extends React.Component {
                     if (isMaster === true) {
                         this.props.setMasterCSBSeed(seed);
                     }
-                    else {
-                        this.setLoadingState(true);
-                    }
+                    this.setLoadingState(true);
                 }
             });
         });

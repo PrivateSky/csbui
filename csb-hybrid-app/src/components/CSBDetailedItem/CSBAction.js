@@ -46,7 +46,7 @@ export default class CSBAction extends React.Component {
                     <TouchableOpacity onPress={() => this.showModal()}>
                         <View style={[
                             styleSheet.button,
-                            { backgroundColor: this.props.color }
+                            { backgroundColor: this.props.color, borderColor:this.props.color }
                         ]}>
                             <Text style={[
                                 styleSheet.text,
@@ -70,10 +70,10 @@ const styleSheet = StyleSheet.create({
 
     button: {
         padding: 10,
-        "min-width": 100,
+        width: 100,
         borderWidth: 1,
-        borderColor: '#cccccc',
-        borderRadius: 10
+        borderRadius: 5,
+
     },
 
     text: {

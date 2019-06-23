@@ -22,7 +22,7 @@ export const commonStyle = {
     },
             
     stepCurrent: {
-        backgroundColor: "#658482"
+        backgroundColor: "#6b8ec6"
     },
 
     isCurrent: {
@@ -32,7 +32,7 @@ export const commonStyle = {
         borderRadius: 26,
         backgroundColor: "#f7f8fc",
         borderWidth: 2,
-        borderColor: "#658482",
+        borderColor: "#6b8ec6",
         zIndex: -100,
         left: -7,
         top: -7

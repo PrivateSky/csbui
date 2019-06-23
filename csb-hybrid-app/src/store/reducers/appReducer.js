@@ -4,7 +4,7 @@ const initialState = {
     appReady: false,
     isFreshInstall: false,
     user: {
-        name: "Pacient A",
+        name: "Anonymous Monkey",
         profilePic: 'freaky-monkey',
         safeBoxes: []
     },
