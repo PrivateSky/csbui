@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2018 RomSoftIasi
+This code has started with the RomSoft Iasi contribution inside of the PrivatSky project.
+Other PrivateSky parteners has contributed to the code. This code is using PrivateSky as backend and to implement the CSB logic in a protable way inside webviews and iframes.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
