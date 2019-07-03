@@ -1,10 +1,8 @@
 import React from 'react';
-import { ListView, Text, View, StyleSheet } from 'react-native';
+import { ListView, Text, View, Button } from 'react-native';
 
 import CheckBox from '../../../CheckBox/CheckBox';
 import StyleSheetFactory from "../WizardStyleFactory/WizardStyleFactory";
-
-import { Button } from 'react-native';
 
 import * as jsPDF from 'jspdf'
 
@@ -15,7 +13,7 @@ const RecoveryPhrase = (props) => {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     let dataSource = ds.cloneWithRows(words);
 
-    var seedToPDF = () => {
+    let seedToPDF = () => {
         var doc = new jsPDF( {
             orientation: 'landscape'
         })
@@ -49,7 +47,7 @@ const RecoveryPhrase = (props) => {
             </View>
 
             <View>
-                <Button onPress={() => seedToPDF()}
+                <Button onPress={ seedToPDF()}
                         title="Save SEED"
                 />
             </View>
