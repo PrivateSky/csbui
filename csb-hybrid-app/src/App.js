@@ -1,37 +1,48 @@
 import React from 'react';
+import {Text,View} from 'react-native';
 import AppContainer from "./container/AppContainer"
 
-var isRegistered = false;
-
-if ('serviceWorker' in navigator) {
-    var interceptorLoaded = navigator.serviceWorker.controller!=null;
-    console.log(navigator.serviceWorker);
-    window.addEventListener('load', function() {
-        if(!isRegistered){
-            navigator.serviceWorker.register('./privateSky-worker.js', {scope:"./"} )
-                .then(function(registration){
-                        console.log(registration);
-                        isRegistered = true;
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        if(!interceptorLoaded){
-                            //refresh after interceptor was loaded but only if the interceptor was not already loaded.
-                            window.location=window.location.href;
-                        }
-                    },
-                    function(err) { // registration failed :(
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-        }
-
-    });
-}
 class App extends React.Component {
+
+    constructor(props){
+        super(props);
+
+        this.state={
+            swIsRegistered :false
+        };
+
+        if ('serviceWorker' in navigator) {
+            var interceptorLoaded = navigator.serviceWorker.controller!=null;
+            console.log(navigator.serviceWorker);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/privateSky-worker.js', {scope:"./"} )
+                    .then((registration)=>{
+                            console.log(registration);
+                            this.setState({swIsRegistered: true});
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            if(!interceptorLoaded){
+                                //refresh after interceptor was loaded but only if the interceptor was not already loaded.
+                                window.location=window.location.href;
+                            }
+                        },
+                        function(err) { // registration failed :(
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+
+            });
+        }
+        else{
+            console.error("No serviceWorker available. Did you used https?");
+        }
+    }
+
 
   render() {
     return (
+        this.state.swIsRegistered?
     <AppContainer>
 
-    </AppContainer>
+    </AppContainer>:<View><Text>Not registered</Text></View>
     );
   }
 }

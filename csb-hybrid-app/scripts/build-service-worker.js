@@ -9,7 +9,8 @@ const files = [
     "public/apps/csb/APIs/csb/create.js",
     "public/apps/csb/APIs/csb/getCSBs.js",
     "public/apps/csb/APIs/csb/saveFile.js",
-    "public/apps/csb/APIs/csb/pin.js"
+    "public/apps/csb/APIs/csb/pin.js",
+    "public/apps/csb/APIs/csb/extractFile.js"
 ];
 
 concat(files,"public/privateSky-worker.js");

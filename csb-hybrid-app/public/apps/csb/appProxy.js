@@ -1,24 +1,18 @@
-var isRegistered = false;
+function loadHtmlApp(appPath, assetAliasPath, placeholder) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/extract', true);
 
-if ('serviceWorker' in navigator) {
-    var interceptorLoaded = navigator.serviceWorker.controller!=null;
-    console.log(navigator.serviceWorker);
-    window.addEventListener('load', function() {
-        if(!isRegistered){
-            navigator.serviceWorker.register('./mergedWorker.js', {scope:"./"} )
-                .then(function(registration){
-                        console.log(registration);
-                        isRegistered = true;
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                        if(!interceptorLoaded){
-                            //refresh after interceptor was loaded but only if the interceptor was not already loaded.
-                            window.location=window.location.href;
-                        }
-                    },
-                    function(err) { // registration failed :(
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "text/html");
+
+    xhr.onload = function () {
+
+        if (xhr.readyState === 4 && xhr.status == "200") {
+
+            placeholder.contentWindow.document.write (xhr.responseText);
+
         }
+    };
 
-    });
+    xhr.send(JSON.stringify({appPath: appPath, assetAliasPath:assetAliasPath}));
 }

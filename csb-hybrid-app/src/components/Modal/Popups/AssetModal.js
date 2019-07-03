@@ -30,15 +30,17 @@ export default class AssetModal extends React.Component {
         this.loadAssetInfo(this.updateProgressMessages, this.prepareAssetInfoForDownload);
         let oldProgress = this.state.progress;
 
-        let nextProgressThick = ()=>{
-            setTimeout(()=>{
-                if(oldProgress === this.state.progress){
-                    oldProgress ++;
+        let nextProgressThick = () => {
+            setTimeout(() => {
+                if (oldProgress === this.state.progress) {
+                    oldProgress++;
                     this.setState({
-                        progress:oldProgress
-                    }, ()=>{nextProgressThick()})
+                        progress: oldProgress
+                    }, () => {
+                        nextProgressThick()
+                    })
                 }
-            },300);
+            }, 300);
         };
 
         nextProgressThick();
@@ -82,6 +84,24 @@ export default class AssetModal extends React.Component {
     render() {
         if (!this.props.displayAssetModal) return null;
 
+        let displayApp = this.state.appLunched ?
+            <View style={{width: "700px", height: "600px"}}>
+                <WebView
+                    onLoad={() => {
+                        this.appWebView.postMessage(
+                            {
+                                appPath: this.props.csbsPath + "/" + this.state.documentName,
+                                assetAliasPath: this.props.csbsPath + '/' + this.props.assetAlias
+                            }
+                        )
+                    }
+                    }
+                    ref={(webView) => {
+                        this.appWebView = webView;
+                    }}
+                    source={{uri: require('../../../../public/apps/csb/appProxy.html')}}/>
+            </View> : null;
+
         return (
             <Modal
                 title={"Download asset " + this.props.assetAlias}
@@ -99,7 +119,10 @@ export default class AssetModal extends React.Component {
                     <AssetView
                         interact={InteractService}
                         assetName={this.state.documentName}
-                        webViewHandler={this.webViewHandler}/>
+                        webViewHandler={this.webViewHandler}
+                        appHandler={() => {
+                            this.setState({appLunched: true})
+                        }}/>
                 </LoaderWrapper>
 
                 <View style={this.state.webViewAssetOpened ? styleSheet.webViewOpened : styleSheet.webViewClosed}>
@@ -108,6 +131,7 @@ export default class AssetModal extends React.Component {
                     }}
                              source={{uri: require('../../../../public/apps/csb/fileDownloader/fileDownloader.html')}}/>
                 </View>
+                {displayApp}
 
             </Modal>
         );

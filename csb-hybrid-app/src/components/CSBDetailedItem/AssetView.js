@@ -22,7 +22,7 @@ export default class AssetView extends React.Component {
         }
     };
 
-    csbExtractHandler = (success, info) => {
+      csbExtractHandler = (success, info) => {
         switch (success) {
             case true: {
                 this.setState({
@@ -69,6 +69,12 @@ export default class AssetView extends React.Component {
                             <Text style={styleSheet.downloadButtonText}>Download</Text>
                         </View>
                     </TouchableOpacity>
+
+                    <TouchableOpacity onPressOut={() => this.props.appHandler()}>
+                        <View style={styleSheet.startApp}>
+                            <Text style={styleSheet.downloadButtonText}>Start App</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             );
         }
@@ -104,6 +110,16 @@ const styleSheet = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#ccc',
         backgroundColor: '#2c7daf'
+    },
+
+    startApp:{
+        paddingVertical: 15,
+        paddingHorizontal: 35,
+        marginHorizontal: 20,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        backgroundColor: '#56ba23'
     },
 
     downloadButtonText: {

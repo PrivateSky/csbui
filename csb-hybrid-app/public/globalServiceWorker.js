@@ -52,5 +52,9 @@ self.addEventListener('fetch', function(event) {
         event.respondWith(_CsbAPI_.resetPin(event));
     }
 
+    if(url.indexOf("/extract")>1 && event.request.method ==="POST"){
+        event.respondWith(_CsbAPI_.extractFile(event));
+    }
+
 });
 

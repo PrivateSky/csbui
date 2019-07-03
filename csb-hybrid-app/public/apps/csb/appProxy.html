@@ -9,27 +9,17 @@
 <script src="apps/csb/appProxy.js"></script>
 <script type="text/javascript">
 
-    //SIMPLE XHR TEST
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/csb', true);
 
-    //Send the proper header information along with the request
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    xhr.onload = function () {
-
-        if (xhr.readyState == 4 && xhr.status == "200") {
-            var data = JSON.parse(xhr.responseText);
-            console.log(data);
+    window.addEventListener('message', function(event) {
+        if(event.data && event.data.appPath){
+            let appIframe = document.getElementById("appIframe");
+            loadHtmlApp(event.data.appPath, event.data.assetAliasPath, appIframe);
         }
-    };
+    }, false)
 
-    setTimeout(()=>{
-        xhr.send(JSON.stringify({csbName:"CSBTEST", backupUrl:"http://backup.privatesky.ro"}));
-    },3000);
 
 </script>
-<iframe src="apps/csb/placeholder.html" id="iframe"/>
+<iframe src="apps/csb/placeholder.html" id="appIframe"/>
 
 
 </body>
