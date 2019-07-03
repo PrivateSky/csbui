@@ -23,7 +23,7 @@ const RecoveryPhrase = (props) => {
         doc.text('Your seed: ' + props.seed, 10, 20)
         //doc.addImage('assets/global/images/csb_file.png', 'PNG', 15, 40)
         doc.save('mySEED.pdf')
-        //doc.autoPrint()
+        doc.autoPrint()
     }
 
 
