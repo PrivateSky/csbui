@@ -4,7 +4,7 @@ import { ListView, Text, View, Button } from 'react-native';
 import CheckBox from '../../../CheckBox/CheckBox';
 import StyleSheetFactory from "../WizardStyleFactory/WizardStyleFactory";
 
-import * as jsPDF from 'jspdf'
+
 
 const RecoveryPhrase = (props) => {
     const style = StyleSheetFactory.getStyleSheet(props.breakpoint);
@@ -13,16 +13,33 @@ const RecoveryPhrase = (props) => {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     let dataSource = ds.cloneWithRows(words);
 
-    let seedToPDF = () => {
-        var doc = new jsPDF( {
-            orientation: 'landscape'
-        })
-        doc.setFontSize(10)
-        doc.text('Your seed: ' + props.seed, 10, 20)
-        //doc.addImage('assets/global/images/csb_file.png', 'PNG', 15, 40)
-        doc.save('mySEED.pdf')
-        doc.autoPrint()
-        //
+
+    let seedToPrint = () => {
+
+        var html: doc = '<!DOCTYPE html>';
+
+        html += '<html lang="en">';
+
+        html += '<head>';
+        html += '<meta charset="utf-8">';
+        html += '<title>Your SEED</title>';
+        html += '</head>';
+
+        html += '<body style="background-color: white;">';
+        html += '<div>';
+        html += '<h1>';
+        html += '<p>This is your SEED: </p></br>';
+        html += '</h1>';
+        html += '</div>';
+        html += props.payload;
+        html += '</div>';
+        html += '</body>';
+        html += '</html>';
+
+        var newWin = window.open();
+        newWin.document.write(html);
+        newWin.window.print();
+        newWin.document.close();
     }
 
 
@@ -47,8 +64,9 @@ const RecoveryPhrase = (props) => {
             </View>
 
             <View>
-                <Button onPress={ seedToPDF()}
-                        title="Save SEED"
+                <Button
+                    onPress={seedToPrint}
+                    title={'Print SEED'}
                 />
             </View>
 
