@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import {seedToPrint} from  '../../services/PrintService'
 
 import TitleText from '../../components/Pages/Settings/TitleText';
 import Input from '../../components/Pages/Settings/Input';
@@ -12,34 +13,7 @@ import ActionButton from '../../components/Pages/Settings/ActionButton';
  */
 const SeedContainer = (props) => {
 
-    let seedToPrint = () => {
-
-        var html: doc = '<!DOCTYPE html>';
-
-        html += '<html lang="en">';
-
-        html += '<head>';
-        html += '<meta charset="utf-8">';
-        html += '<title>Your SEED</title>';
-        html += '</head>';
-
-        html += '<body style="background-color: white;">';
-        html += '<div>';
-        html += '<h1>';
-        html += '<p>This is your SEED: </p></br>';
-        html += '</h1>';
-        html += '</div>';
-        html += props.payload;
-        html += '</div>';
-        html += '</body>';
-        html += '</html>';
-
-        var newWin = window.open();
-        newWin.document.write(html);
-        newWin.window.print();
-        newWin.document.close();
-    }
-
+    const callSeed = () => seedToPrint(props.payload);
 
     let view = null;
     if (props.payload) {
@@ -56,7 +30,7 @@ const SeedContainer = (props) => {
                     actionHandler={props.deleteSeed}
                     label={'Delete SEED'}/>
                 <ActionButton
-                    actionHandler={seedToPrint}
+                    actionHandler={callSeed}
                     label={'Print SEED'}/>
             </View>
         </View>);
